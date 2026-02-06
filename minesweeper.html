@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATRIX MINESWEEPER</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #000000;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00FF41;
+            box-shadow: 0 0 20px #00FF41, inset 0 0 20px rgba(0, 255, 65, 0.1);
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00FF41;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00FF41;
+            letter-spacing: 3px;
+            font-size: 28px;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00FF41;
+            text-shadow: 0 0 5px #00FF41;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: transparent;
+            color: #00FF41;
+            border: 2px solid #00FF41;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: #00FF41;
+            color: #000;
+            box-shadow: 0 0 15px #00FF41;
+        }
+
+        #game-board {
+            display: grid;
+            gap: 2px;
+            background: #001a00;
+            padding: 2px;
+            border: 2px solid #00FF41;
+        }
+
+        .cell {
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border: 1px solid #003300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            user-select: none;
+            transition: all 0.2s;
+            color: #00FF41;
+        }
+
+        .cell:hover:not(.revealed):not(.flagged) {
+            background: #001a00;
+            box-shadow: 0 0 10px #00FF41;
+        }
+
+        .cell.revealed {
+            background: #000;
+            border: 1px solid #006600;
+            cursor: default;
+        }
+
+        .cell.mine {
+            background: #ff0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        .cell.flagged {
+            background: #003300;
+            box-shadow: 0 0 5px #00FF41;
+        }
+
+        .cell.flagged::after {
+            content: 'F';
+            color: #00FF41;
+            text-shadow: 0 0 5px #00FF41;
+            font-weight: bold;
+        }
+
+        .cell.mine.revealed::after {
+            content: 'X';
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            font-weight: bold;
+        }
+
+        .cell.number-1 { color: #00FF41; text-shadow: 0 0 5px #00FF41; }
+        .cell.number-2 { color: #00DD41; text-shadow: 0 0 5px #00DD41; }
+        .cell.number-3 { color: #00BB41; text-shadow: 0 0 5px #00BB41; }
+        .cell.number-4 { color: #009941; text-shadow: 0 0 5px #009941; }
+        .cell.number-5 { color: #007741; text-shadow: 0 0 5px #007741; }
+        .cell.number-6 { color: #005541; text-shadow: 0 0 5px #005541; }
+        .cell.number-7 { color: #003341; text-shadow: 0 0 5px #003341; }
+        .cell.number-8 { color: #00FF41; text-shadow: 0 0 5px #00FF41; }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 30px;
+            letter-spacing: 2px;
+        }
+
+        .win {
+            color: #00FF41;
+            text-shadow: 0 0 10px #00FF41;
+            animation: pulse 1s infinite;
+        }
+
+        .lose {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="container">
+        <h1>[ MATRIX MINESWEEPER ]</h1>
+        <div class="info">
+            <div class="stats">
+                <div>Mines: <span id="mines-count">10</span></div>
+                <div>Flags: <span id="flags-count">0</span></div>
+            </div>
+            <button onclick="resetGame()">New Game</button>
+        </div>
+        <div id="game-board"></div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const ROWS = 10;
+        const COLS = 10;
+        const MINES = 10;
+
+        let board = [];
+        let gameOver = false;
+        let flagsUsed = 0;
+
+        function createBoard() {
+            board = [];
+            gameOver = false;
+            flagsUsed = 0;
+            document.getElementById('flags-count').textContent = flagsUsed;
+            document.getElementById('message').textContent = '';
+
+            // Initialize empty board
+            for (let i = 0; i < ROWS; i++) {
+                board[i] = [];
+                for (let j = 0; j < COLS; j++) {
+                    board[i][j] = {
+                        mine: false,
+                        revealed: false,
+                        flagged: false,
+                        adjacentMines: 0
+                    };
+                }
+            }
+
+            // Place mines randomly
+            let minesPlaced = 0;
+            while (minesPlaced < MINES) {
+                const row = Math.floor(Math.random() * ROWS);
+                const col = Math.floor(Math.random() * COLS);
+                if (!board[row][col].mine) {
+                    board[row][col].mine = true;
+                    minesPlaced++;
+                }
+            }
+
+            // Calculate adjacent mines
+            for (let i = 0; i < ROWS; i++) {
+                for (let j = 0; j < COLS; j++) {
+                    if (!board[i][j].mine) {
+                        board[i][j].adjacentMines = countAdjacentMines(i, j);
+                    }
+                }
+            }
+        }
+
+        function countAdjacentMines(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    if (newRow >= 0 && newRow < ROWS && newCol >= 0 && newCol < COLS) {
+                        if (board[newRow][newCol].mine) {
+                            count++;
+                        }
+                    }
+                }
+            }
+            return count;
+        }
+
+        function renderBoard() {
+            const gameBoard = document.getElementById('game-board');
+            gameBoard.innerHTML = '';
+            gameBoard.style.gridTemplateColumns = `repeat(${COLS}, 30px)`;
+
+            for (let i = 0; i < ROWS; i++) {
+                for (let j = 0; j < COLS; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+
+                    if (board[i][j].revealed) {
+                        cell.classList.add('revealed');
+                        if (board[i][j].mine) {
+                            cell.classList.add('mine');
+                        } else if (board[i][j].adjacentMines > 0) {
+                            cell.textContent = board[i][j].adjacentMines;
+                            cell.classList.add(`number-${board[i][j].adjacentMines}`);
+                        }
+                    } else if (board[i][j].flagged) {
+                        cell.classList.add('flagged');
+                    }
+
+                    cell.addEventListener('click', () => handleCellClick(i, j));
+                    cell.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        handleRightClick(i, j);
+                    });
+
+                    gameBoard.appendChild(cell);
+                }
+            }
+        }
+
+        function handleCellClick(row, col) {
+            if (gameOver || board[row][col].revealed || board[row][col].flagged) {
+                return;
+            }
+
+            board[row][col].revealed = true;
+
+            if (board[row][col].mine) {
+                gameOver = true;
+                revealAllMines();
+                document.getElementById('message').textContent = 'Game Over! You hit a mine!';
+                document.getElementById('message').className = 'lose';
+            } else {
+                if (board[row][col].adjacentMines === 0) {
+                    revealAdjacentCells(row, col);
+                }
+                checkWin();
+            }
+
+            renderBoard();
+        }
+
+        function handleRightClick(row, col) {
+            if (gameOver || board[row][col].revealed) {
+                return;
+            }
+
+            board[row][col].flagged = !board[row][col].flagged;
+            flagsUsed += board[row][col].flagged ? 1 : -1;
+            document.getElementById('flags-count').textContent = flagsUsed;
+            renderBoard();
+        }
+
+        function revealAdjacentCells(row, col) {
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    if (newRow >= 0 && newRow < ROWS && newCol >= 0 && newCol < COLS) {
+                        if (!board[newRow][newCol].revealed && !board[newRow][newCol].flagged) {
+                            board[newRow][newCol].revealed = true;
+                            if (board[newRow][newCol].adjacentMines === 0) {
+                                revealAdjacentCells(newRow, newCol);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function revealAllMines() {
+            for (let i = 0; i < ROWS; i++) {
+                for (let j = 0; j < COLS; j++) {
+                    if (board[i][j].mine) {
+                        board[i][j].revealed = true;
+                    }
+                }
+            }
+        }
+
+        function checkWin() {
+            let revealedCount = 0;
+            for (let i = 0; i < ROWS; i++) {
+                for (let j = 0; j < COLS; j++) {
+                    if (board[i][j].revealed && !board[i][j].mine) {
+                        revealedCount++;
+                    }
+                }
+            }
+
+            if (revealedCount === ROWS * COLS - MINES) {
+                gameOver = true;
+                document.getElementById('message').textContent = 'Congratulations! You won!';
+                document.getElementById('message').className = 'win';
+            }
+        }
+
+        function resetGame() {
+            createBoard();
+            renderBoard();
+        }
+
+        // Initialize game
+        resetGame();
+
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const columns = Math.floor(canvas.width / 20);
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * canvas.height;
+        }
+
+        const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF41';
+            ctx.font = '15px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, i * 20, drops[i]);
+
+                if (drops[i] > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i] += 20;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

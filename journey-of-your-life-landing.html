@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Journey Of Your Life - A full-day personal development retreat about discovering and creating your life's story">
+    <title>The Journey Of Your Life | Adventure Awaits</title>
+
+    <!-- CUSTOMIZATION INSTRUCTIONS:
+
+    Replace all sections marked with "REPLACE:" comments with your actual content:
+    - Event date, time, and location
+    - Video embed URL
+    - Testimonials
+    - Pricing information
+    - CTA button links
+
+    To customize colors, find the :root CSS variables section below.
+    -->
+
+    <style>
+        /* ============================================
+           CSS VARIABLES - Easy Color Customization
+           ============================================ */
+        :root {
+            --color-primary-brown: #8B4513;
+            --color-secondary-brown: #A0522D;
+            --color-gold: #DAA520;
+            --color-gold-light: #FFD700;
+            --color-parchment: #F4E8D0;
+            --color-parchment-dark: #E8D7B8;
+            --color-text: #2C1810;
+            --color-text-light: #5C4033;
+            --color-bronze: #CD7F32;
+            --font-heading: 'Cinzel', 'Georgia', serif;
+            --font-body: 'Merriweather', 'Georgia', serif;
+        }
+
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Merriweather:wght@300;400;700&family=Satisfy&display=swap');
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background:
+                linear-gradient(rgba(44, 24, 16, 0.7), rgba(44, 24, 16, 0.7)),
+                url('images/event-photo-5.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><path d="M100 200 Q 300 100 500 200 T 900 200" stroke="%23A0522D" fill="none" stroke-width="2" opacity="0.3"/><path d="M200 400 Q 400 300 600 400 T 1000 400" stroke="%23A0522D" fill="none" stroke-width="2" opacity="0.3"/><circle cx="300" cy="150" r="5" fill="%23DAA520"/><circle cx="700" cy="350" r="5" fill="%23DAA520"/><text x="250" y="180" font-family="serif" font-size="14" fill="%23A0522D" opacity="0.5">Adventure</text><text x="650" y="380" font-family="serif" font-size="14" fill="%23A0522D" opacity="0.5">Discovery</text></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .compass-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--color-gold-light);
+            text-shadow:
+                3px 3px 6px rgba(0,0,0,0.8),
+                0 0 30px rgba(218, 165, 32, 0.5);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--color-parchment);
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            border: 3px solid var(--color-bronze);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.5),
+                inset 0 -3px 10px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow:
+                0 15px 40px rgba(218, 165, 32, 0.6),
+                inset 0 -3px 10px rgba(0,0,0,0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        /* ============================================
+           SECTION COMMON STYLES
+           ============================================ */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color-primary-brown);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--color-gold);
+            margin: 1rem auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           WHAT AWAITS SECTION
+           ============================================ */
+        .what-awaits {
+            background:
+                linear-gradient(rgba(244, 232, 208, 0.95), rgba(232, 215, 184, 0.95)),
+                url('images/event-photo-1.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .what-awaits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0 0 L100 100 M100 0 L0 100" stroke="%23D4C4A8" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.6);
+            border: 2px solid var(--color-bronze);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-primary-brown);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           VIDEO SECTION
+           ============================================ */
+        .video-section {
+            background: #1a1a1a;
+            color: var(--color-parchment);
+        }
+
+        .video-section .section-title {
+            color: var(--color-gold-light);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--color-primary-brown) 0%, var(--color-secondary-brown) 100%);
+            border: 5px solid var(--color-gold);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ============================================
+           EVENT DETAILS SECTION
+           ============================================ */
+        .event-details {
+            background:
+                linear-gradient(rgba(244, 232, 208, 0.95), rgba(232, 215, 184, 0.95)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><text x="10" y="30" font-family="serif" font-size="12" fill="%23A0522D" opacity="0.1">Journey</text><text x="120" y="80" font-family="serif" font-size="12" fill="%23A0522D" opacity="0.1">Adventure</text><text x="40" y="140" font-family="serif" font-size="12" fill="%23A0522D" opacity="0.1">Discovery</text></svg>');
+            background-size: cover;
+        }
+
+        .details-scroll {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: rgba(255,255,255,0.9);
+            border: 3px solid var(--color-bronze);
+            border-radius: 20px;
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.3),
+                inset 0 0 100px rgba(139, 69, 19, 0.1);
+            position: relative;
+        }
+
+        .details-scroll::before,
+        .details-scroll::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--color-gold);
+            border: 2px solid var(--color-bronze);
+            border-radius: 50%;
+        }
+
+        .details-scroll::before {
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .details-scroll::after {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .detail-block {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(244, 232, 208, 0.5);
+            border-left: 5px solid var(--color-gold);
+            border-radius: 5px;
+        }
+
+        .detail-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-block h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-primary-brown);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .detail-icon {
+            font-size: 2rem;
+        }
+
+        .detail-block p,
+        .detail-block ul {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+        }
+
+        .detail-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-block li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .detail-block li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold);
+            font-weight: bold;
+        }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials {
+            background: linear-gradient(135deg, #2C1810 0%, #3d2415 100%);
+            color: var(--color-parchment);
+        }
+
+        .testimonials .section-title {
+            color: var(--color-gold-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(244, 232, 208, 0.1);
+            border: 2px solid var(--color-bronze);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.3);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            font-family: Georgia, serif;
+            color: var(--color-gold);
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--color-parchment);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--color-gold);
+            background: var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-text);
+        }
+
+        .author-info h4 {
+            font-family: var(--font-heading);
+            color: var(--color-gold-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--color-parchment-dark);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           PRICING SECTION
+           ============================================ */
+        .pricing {
+            background: linear-gradient(180deg, var(--color-parchment) 0%, var(--color-parchment-dark) 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 3px solid var(--color-bronze);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(139, 69, 19, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-gold);
+            border-width: 5px;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--color-gold);
+            color: var(--color-text);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid var(--color-bronze);
+        }
+
+        .pricing-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-primary-brown);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+        }
+
+        .price-currency {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-parchment-dark);
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--color-gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            border: 2px solid var(--color-bronze);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(218, 165, 32, 0.4);
+        }
+
+        /* ============================================
+           FINAL CTA SECTION
+           ============================================ */
+        .final-cta {
+            background:
+                linear-gradient(rgba(44, 24, 16, 0.85), rgba(92, 64, 51, 0.85)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23ff9933;stop-opacity:1" /><stop offset="100%" style="stop-color:%23ff6633;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23sky)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: var(--color-parchment);
+            padding: 6rem 2rem;
+        }
+
+        .final-cta h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--color-gold-light);
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .urgency-text {
+            display: inline-block;
+            background: rgba(218, 165, 32, 0.3);
+            border: 2px solid var(--color-gold);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { border-color: var(--color-gold); }
+            50% { border-color: var(--color-gold-light); }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: #1a1a1a;
+            color: var(--color-parchment-dark);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold-light);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--color-gold);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-gold-light);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           FREE EBOOK SECTION
+           ============================================ */
+        .free-ebook {
+            background: linear-gradient(135deg, #1a1108 0%, #2d1f15 100%);
+            color: var(--color-parchment);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .free-ebook::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23DAA520" opacity="0.3"/><circle cx="80" cy="80" r="2" fill="%23DAA520" opacity="0.3"/><circle cx="50" cy="50" r="2" fill="%23DAA520" opacity="0.3"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.2;
+        }
+
+        .free-ebook .section-title {
+            color: var(--color-gold-light);
+        }
+
+        .ebook-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ebook-visual {
+            text-align: center;
+            position: relative;
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 350px;
+            height: 450px;
+            background: linear-gradient(135deg, var(--color-primary-brown) 0%, var(--color-secondary-brown) 100%);
+            border: 5px solid var(--color-gold);
+            border-radius: 10px;
+            box-shadow:
+                20px 20px 40px rgba(0,0,0,0.8),
+                inset 0 0 50px rgba(218, 165, 32, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            margin: 0 auto;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .book-cover:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.05);
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid var(--color-gold);
+            border-radius: 5px;
+            opacity: 0.5;
+        }
+
+        .book-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+        }
+
+        .book-cover h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-gold-light);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .book-cover .subtitle {
+            font-size: 1rem;
+            color: var(--color-parchment);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .free-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: var(--color-gold);
+            color: var(--color-text);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 3px solid var(--color-gold-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transform: rotate(15deg);
+            animation: pulse-scale 2s infinite;
+        }
+
+        @keyframes pulse-scale {
+            0%, 100% { transform: rotate(15deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.1); }
+        }
+
+        .ebook-content h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .ebook-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--color-parchment-dark);
+        }
+
+        .ebook-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .ebook-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--color-parchment);
+            font-size: 1.05rem;
+        }
+
+        .ebook-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .ebook-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ebook-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            border: 2px solid var(--color-bronze);
+            border-radius: 5px;
+            background: var(--color-parchment);
+            color: var(--color-text);
+            transition: border-color 0.3s ease;
+        }
+
+        .ebook-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
+        }
+
+        .ebook-button {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+            border: 2px solid var(--color-bronze);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .ebook-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(218, 165, 32, 0.4);
+        }
+
+        .privacy-note {
+            font-size: 0.85rem;
+            color: var(--color-parchment-dark);
+            font-style: italic;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .benefits-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-scroll {
+                padding: 2rem 1.5rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .ebook-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .book-cover {
+                max-width: 280px;
+                height: 380px;
+                transform: perspective(1000px) rotateY(0deg);
+            }
+
+            .ebook-form {
+                flex-direction: column;
+            }
+
+            .ebook-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Event Logo -->
+            <img src="images/event-photo-4.jpg" alt="The Journey Of Your Life" style="max-width: 500px; width: 90%; margin-bottom: 2rem; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.8));">
+
+            <h1 style="display: none;">THE JOURNEY<br>OF YOUR LIFE</h1>
+
+            <p class="hero-subtitle">
+                Discover Your Story. Create Your Legend. Live Your Adventure.
+            </p>
+
+            <!-- REPLACE: Update href with your registration/booking link -->
+            <a href="#pricing" class="cta-button">Begin Your Journey</a>
+        </div>
+    </section>
+
+    <!-- ============================================
+         WHAT AWAITS SECTION
+         ============================================ -->
+    <section class="what-awaits fade-in">
+        <div class="container">
+            <h2 class="section-title">What Awaits You</h2>
+
+            <p class="intro-text">
+                <!-- REPLACE: Add your compelling introduction -->
+                A full-day immersive retreat where you'll embark on the greatest adventure of all—
+                discovering and creating the story of YOUR life. Through inspiration, education,
+                and entertainment, you'll uncover hidden treasures within yourself and chart a
+                course toward the life you were meant to live.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🧭</div>
+                    <h3>Discovery</h3>
+                    <p>Uncover the hidden chapters of your life story and understand the journey that brought you here.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">📜</div>
+                    <h3>Creation</h3>
+                    <p>Learn powerful tools and frameworks to write the next chapters of your life with intention and purpose.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🔥</div>
+                    <h3>Inspiration</h3>
+                    <p>Leave energized and motivated, ready to embark on the greatest adventure—living your authentic story.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Transformation</h3>
+                    <p>Experience breakthrough moments that shift your perspective and open new possibilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FREE EBOOK SECTION
+         ============================================ -->
+    <section class="free-ebook fade-in">
+        <div class="container">
+            <h2 class="section-title">Claim Your Free Treasure Map</h2>
+
+            <div class="ebook-container">
+                <div class="ebook-visual">
+                    <div class="book-cover" style="padding: 0; overflow: hidden;">
+                        <div class="free-badge">FREE</div>
+                        <img src="images/event-photo-3.jpg" alt="The Journey Of Your Life - Free Guide" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="ebook-content">
+                    <h3>Start Your Adventure Before the Event</h3>
+
+                    <p class="ebook-description">
+                        <!-- REPLACE: Add your ebook description -->
+                        Get an exclusive preview of what you'll discover at "The Journey Of Your Life."
+                        This free guide introduces the powerful frameworks and tools you'll use to
+                        uncover your life's story and chart your path forward.
+                    </p>
+
+                    <ul class="ebook-features">
+                        <!-- REPLACE: Add your actual ebook features/contents -->
+                        <li>The 5 Core Questions to discover your life's narrative</li>
+                        <li>Mapping Your Journey: A visual storytelling exercise</li>
+                        <li>Finding Your North Star: Values and purpose exploration</li>
+                        <li>Exclusive insights from past participants</li>
+                        <li>Preparation checklist for the full event experience</li>
+                    </ul>
+
+                    <!-- REPLACE: Connect to your email service (Mailchimp, ConvertKit, etc.) -->
+                    <form class="ebook-form" action="#" method="POST">
+                        <input
+                            type="email"
+                            name="email"
+                            class="ebook-input"
+                            placeholder="Enter your email address"
+                            required
+                        >
+                        <button type="submit" class="ebook-button">Get Free Guide</button>
+                    </form>
+
+                    <p class="privacy-note">
+                        🔒 We respect your privacy. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         VIDEO SECTION
+         ============================================ -->
+    <section class="video-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Witness Previous Expeditions</h2>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- Local video player -->
+                    <video controls style="width: 100%; height: 100%; border-radius: 10px;">
+                        <source src="images/promo-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         EVENT DETAILS SECTION
+         ============================================ -->
+    <section class="event-details fade-in">
+        <div class="container">
+            <h2 class="section-title">The Expedition Details</h2>
+
+            <div class="details-scroll">
+                <div class="detail-block">
+                    <h3><span class="detail-icon">📅</span> Date & Time</h3>
+                    <p>
+                        <!-- REPLACE: Add your actual event date and time -->
+                        <strong>Saturday, March 15, 2026</strong><br>
+                        9:00 AM - 6:00 PM<br>
+                        (Registration opens at 8:30 AM)
+                    </p>
+                </div>
+
+                <div class="detail-block">
+                    <h3><span class="detail-icon">📍</span> Location</h3>
+                    <p>
+                        <!-- REPLACE: Add your actual venue information -->
+                        <strong>The Grand Adventure Hall</strong><br>
+                        123 Discovery Lane<br>
+                        Your City, State 12345<br>
+                        <em>Parking and refreshments included</em>
+                    </p>
+                </div>
+
+                <div class="detail-block">
+                    <h3><span class="detail-icon">🗺️</span> Your Journey Includes</h3>
+                    <ul>
+                        <!-- REPLACE: Add your actual agenda items -->
+                        <li>Morning keynote: Mapping Your Life's Territory</li>
+                        <li>Interactive workshop: Discovering Hidden Treasures</li>
+                        <li>Group expedition: Charting Your Path Forward</li>
+                        <li>Personal reflection time with guided exercises</li>
+                        <li>Afternoon session: Writing Your Next Chapter</li>
+                        <li>Closing ceremony: Your Adventure Begins</li>
+                        <li>Full day catering (breakfast, lunch, snacks)</li>
+                        <li>Expedition journal and tools to take home</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PHOTO GALLERY SECTION
+         ============================================ -->
+    <section class="photo-gallery fade-in" style="padding: 5rem 2rem; background: linear-gradient(135deg, #1a1108 0%, #2d1f15 100%);">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--color-gold-light);">Moments from Past Adventures</h2>
+
+            <div style="max-width: 900px; margin: 3rem auto;">
+                <img src="images/event-photo-2.jpg" alt="Previous Journey Of Your Life Event" style="width: 100%; border-radius: 15px; border: 5px solid var(--color-gold); box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
+                <p style="text-align: center; color: var(--color-parchment); margin-top: 1.5rem; font-size: 1.1rem; font-style: italic;">
+                    "Do you remember who you were before the world told you who you should be? This is the place to find out!"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS SECTION
+         ============================================ -->
+    <section class="testimonials fade-in">
+        <div class="container">
+            <h2 class="section-title">Tales from Fellow Adventurers</h2>
+
+            <div class="testimonials-grid">
+                <!-- REPLACE: Add your actual testimonials -->
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">
+                        "This experience completely transformed how I see my life. I finally understand
+                        my story and feel empowered to write the chapters ahead with confidence and purpose."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Previous Participant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">
+                        "I came feeling lost and left with a clear map for my future. The tools and
+                        insights I gained are invaluable. This isn't just an event—it's a life-changing adventure."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Previous Participant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">
+                        "Inspiring, emotional, and practical all at once. I discovered parts of my story
+                        I'd forgotten and found courage to pursue dreams I'd been ignoring. Absolutely worth it!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">E</div>
+                        <div class="author-info">
+                            <h4>Elena Rodriguez</h4>
+                            <p>Previous Participant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PRICING SECTION
+         ============================================ -->
+    <section id="pricing" class="pricing fade-in">
+        <div class="container">
+            <h2 class="section-title">Choose Your Adventure</h2>
+
+            <div class="pricing-grid">
+                <!-- REPLACE: Update pricing tiers with your actual offerings -->
+
+                <div class="pricing-card fade-in">
+                    <div class="pricing-icon">🎒</div>
+                    <h3>Explorer</h3>
+                    <div class="price">
+                        <span class="price-currency">$</span>197
+                    </div>
+                    <ul class="features-list">
+                        <li>Full day retreat access</li>
+                        <li>All workshops and sessions</li>
+                        <li>Expedition journal & materials</li>
+                        <li>Breakfast & lunch included</li>
+                        <li>Group activities</li>
+                    </ul>
+                    <!-- REPLACE: Update href with booking link for this tier -->
+                    <a href="#" class="pricing-cta">Reserve Your Spot</a>
+                </div>
+
+                <div class="pricing-card featured fade-in">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-icon">⭐</div>
+                    <h3>Adventurer</h3>
+                    <div class="price">
+                        <span class="price-currency">$</span>297
+                    </div>
+                    <ul class="features-list">
+                        <li>Everything in Explorer</li>
+                        <li>VIP seating</li>
+                        <li>Premium expedition kit</li>
+                        <li>30-day email support</li>
+                        <li>Bonus digital resources</li>
+                        <li>Post-event community access</li>
+                    </ul>
+                    <!-- REPLACE: Update href with booking link for this tier -->
+                    <a href="#" class="pricing-cta">Start Your Journey</a>
+                </div>
+
+                <div class="pricing-card fade-in">
+                    <div class="pricing-icon">👑</div>
+                    <h3>Legend</h3>
+                    <div class="price">
+                        <span class="price-currency">$</span>497
+                    </div>
+                    <ul class="features-list">
+                        <li>Everything in Adventurer</li>
+                        <li>Private consultation (60 min)</li>
+                        <li>Personalized life map</li>
+                        <li>90-day email & call support</li>
+                        <li>Exclusive legend's community</li>
+                        <li>Lifetime event recordings</li>
+                    </ul>
+                    <!-- REPLACE: Update href with booking link for this tier -->
+                    <a href="#" class="pricing-cta">Become a Legend</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FINAL CTA SECTION
+         ============================================ -->
+    <section class="final-cta fade-in">
+        <div class="container">
+            <h2>Your Greatest Adventure Awaits</h2>
+            <p>
+                Every legend begins with a single step. Today is the day you choose to discover
+                your story, create your path, and live the adventure you were meant for.
+            </p>
+
+            <div class="urgency-text">
+                <!-- REPLACE: Update with your actual urgency message -->
+                ⏰ Limited to 50 adventurers | Early Bird Pricing Ends Soon
+            </div>
+
+            <!-- REPLACE: Update href with your main registration link -->
+            <a href="#pricing" class="cta-button">Claim Your Spot Now</a>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <!-- REPLACE: Update with your actual links -->
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#faq">FAQ</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms & Conditions</a>
+            </div>
+
+            <div class="social-links">
+                <!-- REPLACE: Update with your actual social media links -->
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="LinkedIn">💼</a>
+            </div>
+
+            <p class="copyright">
+                <!-- REPLACE: Update with your information -->
+                © 2026 The Journey Of Your Life. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT - Scroll Animations
+         ============================================ -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Lazy load video
+        const videoSection = document.querySelector('.video-section');
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target.querySelector('iframe');
+                    if (iframe && iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                    }
+                    videoObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        if (videoSection) {
+            videoObserver.observe(videoSection);
+        }
+    </script>
+</body>
+</html>
